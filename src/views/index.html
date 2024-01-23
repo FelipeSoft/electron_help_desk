@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH Soluções</title>
+    <link rel="stylesheet" href="../../public/styles.css">
+</head>
+
+<body>
+    <header class="w-screen py-8 bg-blue-600 text-white">
+        <div class="max-w-6xl h-full px-8 mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold">Help Desk</h1>
+        </div>
+    </header>
+    <main class="max-w-6xl mx-auto p-8">
+        <div class="flex items-center justify-between w-full h-max">
+            <h2 class="text-xl">Olá!</h2>
+            <div class="gap-4 flex items-center">
+                <button class="bg-blue-500 px-4 py-2 text-white rounded-md">Configurações</button>
+                <button class="bg-red-500 px-4 py-2 text-white rounded-md">Novo Chamado</button>
+            </div>
+        </div>
+        <div class="mt-10">
+            <table id="tickets_table" class="w-full">
+                <thead class="">
+                    <tr>
+                        <td class="text-center rounded-tl-md px-3 py-1.5 bg-blue-600 text-white">Nº</td>
+                        <td class="text-center px-3 py-1.5 bg-blue-600 text-white">Status</td>
+                        <td class="text-center px-3 py-1.5 bg-blue-600 text-white">Cliente</td>
+                        <td class="text-center px-3 py-1.5 bg-blue-600 text-white">Descrição</td>
+                        <td class="text-center rounded-tr-md px-3 py-1.5 bg-blue-600 text-white">Operador</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="even:bg-gray-100 text-center cursor-pointer transition-all hover:bg-blue-100">
+                        <td class="px-3 py-1.5 text-sm border-b">1</td>
+                        <td class="px-3 py-1.5 text-sm border-b">Em Andamento</td>
+                        <td class="px-3 py-1.5 text-sm border-b">TH Soluções</td>
+                        <td class="px-3 py-1.5 text-sm border-b">Desenvolvendo a plataforma de HelpDesk</td>
+                        <td class="px-3 py-1.5 text-sm border-b">Felipe</td>
+                    </tr>
+                    <tr class="even:bg-gray-100 text-center cursor-pointer transition-all hover:bg-blue-100">
+                        <td class="px-3 py-1.5 text-sm border-b">2</td>
+                        <td class="px-3 py-1.5 text-sm border-b">Suspenso</td>
+                        <td class="px-3 py-1.5 text-sm border-b">TH Soluções</td>
+                        <td class="px-3 py-1.5 text-sm border-b">Desenvolvendo a plataforma de ServiceDesk</td>
+                        <td class="px-3 py-1.5 text-sm border-b">Felipe</td>
+                    </tr>
+                </tbody>
+            </table>  
+        </div>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "th-electron-help-desk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "watch": "npx tailwindcss -i src/styles.css -o public/styles.css --watch",
+    "start": "electron main.js",
+    "build:css": "npx tailwindcss build src/styles.css -o public/styles.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.17",
+    "electron": "^28.1.4",
+    "electron-reload": "^2.0.0-alpha.1",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1"
+  },
+  "dependencies": {
+    "axios": "^1.6.5",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH Soluções</title>
+    <link rel="stylesheet" href="../../public/styles.css">
+</head>
+
+<body>
+    <header class="w-screen py-8 bg-blue-600 text-white">
+        <div class="max-w-4xl h-full px-8 mx-auto flex items-center justify-between">
+            <h1 class="text-2xl font-bold">Help Desk</h1>
+        </div>
+    </header>
+    <main class="max-w-4xl mx-auto p-8">
+        <div>
+            <div class="flex items-end justify-between w-full h-max gap-4">
+                <label for="token" class="w-full gap-4 font-bold">
+                    KEY:
+                    <input class="w-full border focus:border-blue-500 outline-none bg-gray-100 rounded-md px-4 py-2"
+                        id="token" type="text" maxlength="40">
+                </label>
+                <button id="buttonValidateToken" class="border-blue-500 border bg-blue-500 px-4 py-2 text-white rounded-md">VALIDAR</button>
+            </div>
+            <p id="authMessage" class="mb-10 text-gray-500 mt-2">Informe a Client Key correspondente ao cliente no campo acima.</p>
+        </div>
+        <div>
+            <div>
+                <h1 class="font-bold text-xl">Informações do Cliente</h1>
+                <div class="h-0.5 w-full bg-blue-500 mt-2"></div>
+            </div>
+            <div class="mt-4">
+                <div class="w-full flex items-center justify-between py-2">
+                    <h2 class="text-gray-500">NOME:</h2>
+                    <h3 class="text-gray-500">Felipe de Castro Lima</h3>
+                </div>
+                <div class="w-full flex items-center justify-between py-2">
+                    <h2 class="text-gray-500">EMAIL:</h2>
+                    <h3 class="text-gray-500">felipedecastrolima2@gmail.com</h3>
+                </div>
+                <div class="w-full flex items-center justify-between py-2">
+                    <h2 class="text-gray-500">CPF/CNPJ:</h2>
+                    <h3 class="text-gray-500">12.345.678/0001-12</h3>
+                </div>
+                <div class="w-full flex items-center justify-between py-2">
+                    <h2 class="text-gray-500">TELEFONE:</h2>
+                    <h3 class="text-gray-500">(19) 99917-6943</h3>
+                </div>
+            </div>
+            <div class="flex items-center justify-between mt-4">
+                <a href="" class="text-blue-500 font-semibold text-sm w-full">Você precisa de ajuda?</a>
+                <div class="flex items-center justify-end w-full gap-4">
+                    <button class="border-red-700 border bg-red-700 px-4 py-2 text-white rounded-md">CANCELAR</button>
+                    <button
+                        class="border-green-700 border bg-green-700 px-4 py-2 text-white rounded-md">CONFIRMAR</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        document.querySelector("#buttonValidateToken").addEventListener("click", async () => {
+            const token = document.querySelector("#token").value
+            const authMessage = document.querySelector("#authMessage")
+
+            if (token.length > 40 || token.length < 40) {
+                authMessage.innerHTML = "O token deve conter 40 caracteres!"
+                return;
+            }
+
+            authMessage.innerHTML = ""
+            const { token } = require("../server/token.js");
+            const client = await token.getClientByToken()            
+        })
+    </script>
+</body>
+</html>
