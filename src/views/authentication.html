@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TH Soluções</title>
+    <title>TH Soluções - Help Desk</title>
     <link rel="stylesheet" href="../../public/styles.css">
 </head>
 
@@ -15,16 +15,40 @@
         </div>
     </header>
     <main class="max-w-4xl mx-auto p-8">
+        <div class="fixed inset-0 bg-white/65 hidden items-center justify-center" id="confirmation">
+            <div
+                class="relative shadow-xl max-w-2xl bg-white flex items-center justify-between flex-col rounded-md p-10">
+                <button id="close"
+                    class="font-bold text-white absolute right-5 top-5 rounded-md bg-red-500 h-8 w-8 flex items-center justify-center">X</button>
+                <h1 class="font-semibold text-2xl">Confirmação</h1>
+                <section>
+                    <article class="text-gray-500 text-center my-4">
+                        <p class="text-xl">Você deseja confirmar suas alterações?</p>
+                        <p class="text-sm mt-2">OBS: Após a atribuição, as informações não poderão ser modificadas, a
+                            menos que seja realizada uma nova instalação.</p>
+                    </article>
+                    <div class="flex items-center gap-2 mt-2 w-full justify-center">
+                        <button id="ok"
+                            class="font-bold text-white rounded-md bg-blue-500 py-1 px-2 flex items-center justify-center">OK</button>
+                        <button id="cancel"
+                            class="font-bold text-white rounded-md bg-gray-500 py-1 px-2 flex items-center justify-center">CANCELAR</button>
+                    </div>
+                </section>
+            </div>
+        </div>
         <div>
             <div class="flex items-end justify-between w-full h-max gap-4">
                 <label for="token" class="w-full gap-4 font-bold">
                     KEY:
-                    <input class="w-full border focus:border-blue-500 outline-none bg-gray-100 rounded-md px-4 py-2"
-                        id="token" type="text" maxlength="40">
+                    <input
+                        class="w-full border font-normal focus:border-blue-500 outline-none bg-gray-100 rounded-md px-4 py-2"
+                        id="token" type="text" maxlength="24">
                 </label>
-                <button id="buttonValidateToken" class="border-blue-500 border bg-blue-500 px-4 py-2 text-white rounded-md">VALIDAR</button>
+                <button id="buttonValidateToken"
+                    class="border-blue-500 border bg-blue-500 px-4 py-2 text-white rounded-md">VALIDAR</button>
             </div>
-            <p id="authMessage" class="mb-10 text-gray-500 mt-2">Informe a Client Key correspondente ao cliente no campo acima.</p>
+            <p id="authMessage" class="mb-10 text-gray-500 mt-2">Informe a Client Key correspondente ao cliente no campo
+                acima.</p>
         </div>
         <div>
             <div>
@@ -33,46 +57,36 @@
             </div>
             <div class="mt-4">
                 <div class="w-full flex items-center justify-between py-2">
-                    <h2 class="text-gray-500">NOME:</h2>
-                    <h3 class="text-gray-500">Felipe de Castro Lima</h3>
+                    <h2 class="text-gray-500">EMPRESA:</h2>
+                    <h3 id="company" class="text-gray-500">Nenhum</h3>
+                </div>
+                <div class="w-full flex items-center justify-between py-2">
+                    <h2 class="text-gray-500">REPRESENTANTE:</h2>
+                    <h3 id="owner" class="text-gray-500">Nenhum</h3>
                 </div>
                 <div class="w-full flex items-center justify-between py-2">
                     <h2 class="text-gray-500">EMAIL:</h2>
-                    <h3 class="text-gray-500">felipedecastrolima2@gmail.com</h3>
+                    <h3 id="email" class="text-gray-500">Nenhum</h3>
                 </div>
                 <div class="w-full flex items-center justify-between py-2">
                     <h2 class="text-gray-500">CPF/CNPJ:</h2>
-                    <h3 class="text-gray-500">12.345.678/0001-12</h3>
-                </div>
-                <div class="w-full flex items-center justify-between py-2">
-                    <h2 class="text-gray-500">TELEFONE:</h2>
-                    <h3 class="text-gray-500">(19) 99917-6943</h3>
+                    <h3 id="identifier" class="text-gray-500">Nenhum</h3>
                 </div>
             </div>
             <div class="flex items-center justify-between mt-4">
                 <a href="" class="text-blue-500 font-semibold text-sm w-full">Você precisa de ajuda?</a>
                 <div class="flex items-center justify-end w-full gap-4">
-                    <button class="border-red-700 border bg-red-700 px-4 py-2 text-white rounded-md">CANCELAR</button>
-                    <button
+                    <button id="remove"
+                        class="border-red-700 border bg-red-700 px-4 py-2 text-white rounded-md">REMOVER</button>
+                    <button id="confirm"
                         class="border-green-700 border bg-green-700 px-4 py-2 text-white rounded-md">CONFIRMAR</button>
                 </div>
             </div>
+            <p id="errorMessage" class="w-full text-right mt-2 text-red-500 hidden">Por favor, valide uma Client Key
+                para prosseguir!</p>
         </div>
     </main>
-    <script>
-        document.querySelector("#buttonValidateToken").addEventListener("click", async () => {
-            const token = document.querySelector("#token").value
-            const authMessage = document.querySelector("#authMessage")
-
-            if (token.length > 40 || token.length < 40) {
-                authMessage.innerHTML = "O token deve conter 40 caracteres!"
-                return;
-            }
-
-            authMessage.innerHTML = ""
-            const { token } = require("../server/token.js");
-            const client = await token.getClientByToken()            
-        })
-    </script>
+    <script type="module" src="../modules/authentication.mjs"></script>
 </body>
+
 </html>
