@@ -1,4 +1,4 @@
-import { limitWords } from "../utils/functions.mjs"
+import { limitWords } from "../utils/functions.js"
 
 const modal = document.querySelector("#newTicketModal")
 

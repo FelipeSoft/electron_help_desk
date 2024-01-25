@@ -3,10 +3,10 @@ import { serverClient } from "../server/client.mjs"
 const modal = document.querySelector("#confirmation")
 const errorMessage = document.querySelector("#errorMessage")
 
-var owner = ""
-var email = ""
-var company = ""
-var enterpriseIdentifier = ""
+var owner = "Nenhum"
+var email = "Nenhum"
+var company = "Nenhum"
+var enterpriseIdentifier = "Nenhum"
 
 document.querySelector("#buttonValidateToken").addEventListener("click", async () => {
     const inputToken = document.querySelector("#token").value
@@ -19,20 +19,32 @@ document.querySelector("#buttonValidateToken").addEventListener("click", async (
     }
 
     authMessage.innerHTML = ""
-    const client = await serverClient.getClientByToken()
 
-    owner = client.owner
-    email = client.email
-    company = client.company
-    enterpriseIdentifier = client.enterpriseIdentifier
+    try {
+        const client = await serverClient.getClientByToken()
+
+        owner = client.owner
+        email = client.email
+        company = client.company
+        enterpriseIdentifier = client.enterpriseIdentifier
+    } catch (error) {
+        if (error instanceof TypeError) {
+            if (error.message = "TypeError: Failed to fetch") {
+                alert("Falha na Requisição: Não foi possível realizar a operação pois o servidor se encontra fora do ar.")
+            }
+            return
+        }
+
+        alert("Credencial Inválida: Não foi possível encontrar nenhum cliente com a Client Key informada. \n Por favor, verifique-a e tente novamente, caso o problema persistir solicite o suporte técnico da TH Soluções.")
+    }
 
     errorMessage.classList.remove("block")
     errorMessage.classList.add("hidden")
 
-    document.querySelector("#owner").innerHTML = client.owner
-    document.querySelector("#email").innerHTML = client.email
-    document.querySelector("#company").innerHTML = client.company
-    document.querySelector("#identifier").innerHTML = client.enterpriseIdentifier
+    document.querySelector("#owner").innerHTML = owner
+    document.querySelector("#email").innerHTML = email
+    document.querySelector("#company").innerHTML = company
+    document.querySelector("#identifier").innerHTML = enterpriseIdentifier
 })
 
 document.querySelector("#ok").addEventListener("click", async () => {
